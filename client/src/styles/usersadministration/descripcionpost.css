@@ -7,7 +7,7 @@
     --shadow-hover: rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
     --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-size-lg: 1.5rem;
+    --font-size-lg: 1.7rem;
     --font-size-md: 1.375rem;
     --font-size-sm: 1rem;
 }
@@ -66,20 +66,20 @@
 /* Textos */
 .info-label {
     font-weight: 600;
-    color: rgb(22, 22, 22);
+    color: rgb(2, 1, 1);
     margin-right: 8px; /* Espacio entre la etiqueta y el valor */
 }
 
 .info-value {
     font-weight: 400;
-    color: rgb(26, 26, 26);
+    color: rgb(0, 0, 0);
 }
 
 /* Responsivo */
 .descriptiones-container {
     max-width: 800px;
     margin: 10px auto;
-    padding: 7px;
+    
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -93,20 +93,20 @@
 }
 
 .infoitem-description i {
-    color: rgb(5, 5, 5);
+    color: rgb(1, 99, 245);
     font-size: 18px;
     margin-right: 12px; /* Espacio entre el ícono y la etiqueta */
 }
 
 .infolabel {
     font-weight: bold;
-    color: rgb(14, 13, 13);
+    color: rgb(3, 0, 51);
     margin-right: 8px; /* Espacio entre la etiqueta y el valor */
 }
 
 .infovalue {
     font-size: 16px;
-    color: rgb(19, 19, 19);
+    color: rgb(0, 0, 0);
     word-break: break-word;
 }
 
@@ -118,7 +118,7 @@
 }
 
 .readMore {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     padding-left: 5px;
@@ -141,7 +141,7 @@
     }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 450px) {
     .description-container {
         padding: 0.5rem;
     }
