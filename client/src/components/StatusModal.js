@@ -348,7 +348,7 @@ const StatusModal = () => {
                     marque: status.attributes?.marque || "",
                     model: status.attributes?.model || "",
                     anne: status.attributes?.anne || "",
-                    finition:status.attributes?.finition || "",
+                    finition: status.attributes?.finition || "",
                     kilometrage: status.attributes?.kilometrage || "",
                     moteur: status.attributes?.moteur || "",
                     energie: status.attributes?.energie || "",
@@ -552,8 +552,7 @@ const StatusModal = () => {
 
     const kilometrage = () => (
         <div className="form-group">
-            <label className="text-danger"> Spécifications</label>
-            <input onChange={handleChangeInput} value={postData.attributes.kilometrage} name="kilometrage" type="number" className="form-control" placeholder='kilometrage en KM' />
+            <input onChange={handleChangeInput} value={postData.attributes.kilometrage} name="kilometrage" type="number" className="form-control" placeholder='kilometrage en Km' />
 
         </div>
     )
@@ -626,7 +625,7 @@ const StatusModal = () => {
         <div className='status_modal'  >
             <form onSubmit={handleSubmit}>
                 <div className="status_header">
-                    <h5 className="m-0">Annonces Immobilière</h5>
+                <h5 className="ml-2">Annonces voitures & véhicules</h5>
                     <span onClick={() => dispatch({
                         type: GLOBALTYPES.STATUS, payload: false
                     })}>
@@ -655,71 +654,652 @@ const StatusModal = () => {
                             </div>
 
                             {postData.title === "Voitures" && (
-                                <div className='form-group'>
-
-                                    <div className="form-group">
-                                        {marca()}
-                                    </div>
-                                    <div className="form-group">
-                                        {modelo()}
-                                    </div>
-                                    <div className="form-group">
-                                        {marque()}
-                                    </div>
-                                    <div className="form-group"  >
-                                        {model()}
-                                    </div>
-
-                                    <div className="form-group" >
-                                        {anne()}
-                                    </div>
-                                    <div className="form-group">
-                                        {finition()}
-                                    </div>
-
-                                    <div className="form-group"  >
-                                        {motorisation()}
-                                    </div>
-                                    <div className="form-group"  >
-                                        {energie()}
-                                    </div>
-                                    <div className="form-group">
-                                        {kilometrage()}
-                                    </div>
-
-                                    <div className="form-group">
-                                        {boite()}
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="text-primary">Spécifications</label>
-
+                                <div>
+                                    <div>
                                         <div className="form-group">
-                                            {couleur()}
+                                            {marca()}
                                         </div>
                                         <div className="form-group">
-                                            {papiers()}
+                                            {modelo()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
                                         </div>
                                         <div className="form-group">
-                                            {optionduvoitures()}
+                                            {finition()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group"  >
+                                            <label className="text-primary">Motorisation</label>
+                                            {motorisation()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group">
+                                            <label className="text-primary">Spécifications</label>
+                                            <div className="form-group">
+                                                {kilometrage()}
+                                            </div>
+                                            <div className="form-group">
+                                                {couleur()}
+                                            </div>
+                                            <div className="form-group">
+                                                {papiers()}
+                                            </div>
+                                            <div className="form-group">
+                                                {optionduvoitures()}
+                                            </div>
+ 
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {postData.title === "Utilitaire" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marca()}
+                                        </div>
+                                        <div className="form-group">
+                                            {modelo()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+                                        <div className="form-group">
+                                            {finition()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group"  >
+                                            <label className="text-primary">Motorisation</label>
+                                            {motorisation()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group">
+                                            <label className="text-primary">Spécifications</label>
+                                            <div className="form-group">
+                                                {kilometrage()}
+                                            </div>
+                                            <div className="form-group">
+                                                {couleur()}
+                                            </div>
+                                            <div className="form-group">
+                                                {papiers()}
+                                            </div>
+                                            <div className="form-group">
+                                                {optionduvoitures()}
+                                            </div>
+ 
                                         </div>
                                     </div>
                                 </div>
                             )}
 
 
+                            {postData.title === "Motos_Scooters" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="text-primary">Motorisation</label>
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group">
+                                            <label className="text-primary">Spécifications</label>
+                                            <div className="form-group">
+                                                {kilometrage()}
+                                            </div>
+                                            <div className="form-group">
+                                                {couleur()}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {postData.title === "Quads" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <label className="text-primary">Motorisation</label>
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {postData.title === "Fourgon" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <label className="text-primary">Motorisation</label>
+
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group">
+                                            <label className="text-primary">Spécifications</label>
+                                            <div className="form-group">
+                                                {kilometrage()}
+                                            </div>
+                                            <div className="form-group">
+                                                {couleur()}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {postData.title === "Camion" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <label className="text-primary">Motorisation</label>
+
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group">
+                                            <label className="text-primary">Spécifications</label>
+                                            <div className="form-group">
+                                                {kilometrage()}
+                                            </div>
+                                            <div className="form-group">
+                                                {couleur()}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {postData.title === "Bus" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <label className="text-primary">Motorisation</label>
+
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="form-group">
+                                            <label className="text-primary">Spécifications</label>
+                                            <div className="form-group">
+                                                {kilometrage()}
+                                            </div>
+                                            <div className="form-group">
+                                                {couleur()}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+                            {postData.title === "Engin" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <label className="text-primary">Motorisation</label>
+
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {postData.title === "Remorques" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <label className="text-primary">Motorisation</label>
+
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {postData.title === "Tracteurs" && (
+                                <div>
+                                    <div>
+                                        <div className="form-group">
+                                            {marque()}
+                                        </div>
+                                        <div className="form-group"  >
+                                            {model()}
+                                        </div>
+                                        <div className="form-group" >
+                                            {anne()}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="text-primary">Motorisation</label>
+                                        <div className="form-group"  >
+                                            {energie()}
+                                        </div>
+                                        <div className="form-group">
+                                            {boite()}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+
                         </div>
                     )}
 
-
-
-
-
-
-
-                    {postData.subCategory === "Location" && (
+                    {postData.title === "Bateaux_Barques" && (
                         <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
 
+                            <div>
+                                <label className="text-primary">Motorisation</label>
+                                <div className="form-group"  >
+                                    {energie()}
+                                </div>
+                                <div className="form-group">
+                                    {boite()}
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="form-group">
+                                    <label className="text-primary">Spécifications</label>
+                                    <div className="form-group">
+                                        {kilometrage()}
+                                    </div>
+                                    <div className="form-group">
+                                        {couleur()}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    )}
+
+                    {postData.title === "Camping_Cars" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {postData.title === "Scooters_électriques" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Moto_cross" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {postData.title === "Vélo_électrique" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {postData.title === "Trottinettes_électriques" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {postData.title === "Jet_ski" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Yacht" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Bus_de_tourisme" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Camion_de_déménagement" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Bulldozer" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+
+                    {postData.title === "Grue" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Trains" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Hélicoptère" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {postData.title === "Avion_prive" && (
+                        <div>
+                            <div>
+                                <div className="form-group">
+                                    {marque()}
+                                </div>
+                                <div className="form-group"  >
+                                    {model()}
+                                </div>
+                                <div className="form-group" >
+                                    {anne()}
+                                </div>
+                            </div>
                         </div>
                     )}
 
@@ -730,13 +1310,19 @@ const StatusModal = () => {
 
 
 
-                    <div className="form-group">
+
+
+
+
+
+
+                    <div className="form-group mt-3">
                         <textarea name="description" value={postData.description}
                             onChange={handleChangeInput}
                             placeholder='Description...'
                         />
                     </div>
-                    <div className="card-body form-group">
+                    <div className="card-body form-group mb-4">
                         <label className="text-primary">Prix</label>
                         <div style={{ padding: '0 20px' }}>
                             <Slider

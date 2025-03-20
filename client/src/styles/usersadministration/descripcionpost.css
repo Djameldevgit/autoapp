@@ -141,7 +141,7 @@
     }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 350px) {
     .description-container {
         padding: 0.5rem;
     }
@@ -152,6 +152,6 @@
     .info-item i,
     .info-label,
     .info-value {
-        font-size:1rem; /* Reducir tamaño de fuente en pantallas pequeñas */
+        font-size:1.2rem; /* Reducir tamaño de fuente en pantallas pequeñas */
     }
 }
