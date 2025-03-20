@@ -6,6 +6,9 @@ import { getDataAPI } from '../../utils/fetchData';
 import { aprovarPostPendiente, POST_TYPES_APROVE } from '../../redux/actions/postAproveAction';
 import { deletePost } from '../../redux/actions/postAction';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+
 
 const PostsPendientes = () => {
     const { homePostsAprove, auth, socket } = useSelector((state) => state);
@@ -14,7 +17,7 @@ const PostsPendientes = () => {
     const history = useHistory();
     const [load, setLoad] = useState(false);
     const [postsPendientes, setPostsPendientes] = useState([]);
-    const [, setSelectedImage] = useState(null);
+
 
     useEffect(() => {
         if (homePostsAprove && homePostsAprove.posts) {
@@ -48,6 +51,13 @@ const PostsPendientes = () => {
             history.push("/administracion/homepostspendientes");
         }
     };
+    const handleBlockUser = (user) => {
+        if (window.confirm(`¿Estás seguro de que quieres bloquear al usuario ${user.username}?`)) {
+            // Aquí puedes llamar a una acción de Redux o a una API para bloquear al usuario
+            console.log(`Usuario ${user.username} bloqueado.`);
+            // dispatch(blockUserAction({ user, auth }));
+        }
+    };
 
     return (
         <div className="container mt-4">
@@ -75,15 +85,18 @@ const PostsPendientes = () => {
                                     <td>{index + 1}</td>
                                     <td>
                                         {post.images?.length > 0 ? (
-                                            <img
-                                                src={post.images[0]?.url || ""}
-                                                alt="Post"
-                                                className="img-thumbnail"
-                                                style={{ width: "60px", height: "60px", objectFit: "cover", cursor: "pointer" }}
-                                                onClick={() => setSelectedImage(post.images[0]?.url || "")}
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#imageModal"
-                                            />
+
+
+                                            <Link to={`/post/${post._id}`}>
+                                                <img
+                                                    src={post.images[0]?.url || ""}
+                                                    alt="Post"
+                                                    className="img-thumbnail"
+                                                    style={{ width: "60px", height: "60px", objectFit: "cover", cursor: "pointer" }}
+                                                />
+                                            </Link>
+
+
                                         ) : (
                                             <span>Pas des images</span>
                                         )}
@@ -100,18 +113,27 @@ const PostsPendientes = () => {
                                         </span>
                                     </td>
 
+                                    <td className="d-none d-md-table-cell">
+                                        {new Date(post.createdAt).toLocaleString()}
+                                    </td>
 
 
-                                    <td className="d-none d-md-table-cell">{new Date(post.createdAt).toLocaleDateString()}</td>
 
-
-
-                                    <td>
+                                    <td className="dropdown-container">
                                         <div className="dropdown">
-                                            <button className="btn btn-sm btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                            <button
+
+                                                className="btn btn-sm btn-primary dropdown-toggle"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                data-bs-display="static"
+                                                aria-expanded="false"
+
+
+                                            >
                                                 Opciones
                                             </button>
-                                            <ul className="dropdown-menu">
+                                            <ul className="dropdown-menu dropdown-menu-end">
                                                 <li>
                                                     <button className="dropdown-item text-success" onClick={() => handleAprovePost(post)}>
                                                         <i className="material-icons">check_circle</i> Aprobar
@@ -122,17 +144,29 @@ const PostsPendientes = () => {
                                                         <i className="material-icons">delete_outline</i> Eliminar
                                                     </button>
                                                 </li>
+                                                <li>
+                                                    <button className="dropdown-item text-warning" onClick={() => handleBlockUser(post.user)}>
+                                                        <i className="material-icons">block</i> Bloquear Usuario
+                                                    </button>
+                                                </li>
                                             </ul>
                                         </div>
                                     </td>
+
                                 </tr>
+
+
                             ))
                         ) : (
                             <tr>
                                 <td colSpan="8" className="text-center">No hay posts pendientes</td>
                             </tr>
                         )}
+
+
                     </tbody>
+
+
                 </table>
 
                 {load && <img src={LoadIcon} alt="loading" className="d-block mx-auto" />}

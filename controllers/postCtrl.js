@@ -21,14 +21,14 @@ const postCtrl = {
     crearPostPendiente: async (req, res) => {
         try {
             const { postData, images } = req.body
-            const { title,marca,modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
+            const { subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
                 quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes, } = postData || {};
 
             if (images.length === 0)
                 return res.status(400).json({ msg: "Please add your photo." })
 
             const newPost = new Posts({
-                title,marca,modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
+                subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
                 quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
                 attributes,
                 images,
@@ -112,14 +112,15 @@ const postCtrl = {
     },
     updatePost: async (req, res) => {
         try {
-            const { title,marca,modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
-                quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes, images
+            const { subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
+                quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
+                images
+
             } = req.body
 
             const post = await Posts.findOneAndUpdate({ _id: req.params.id }, {
-                title,marca,modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
+                subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
                 quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
-                attributes,
                 images
 
 
@@ -136,7 +137,7 @@ const postCtrl = {
                 msg: "Updated Post!",
                 newPost: {
                     ...post._doc,
-                    title,marca,modelo, marque, model, anne, finition, moteur, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
+                    subCategory,title, marca, modelo, marque, model, anne, finition, moteur, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
                     quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes, images
                 }
             })

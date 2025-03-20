@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 import DescriptionPost from './home/post_card/DescriptionPost'
 import InformationUserPost from './home/post_card/InformationUserPost'
 import { useSelector } from 'react-redux';
+import DescriptionUserPost from './home/post_card/DescriptionUserPost'
  
 const PostCard = ({ post, theme }) => {
     const location = useLocation();
@@ -31,7 +32,7 @@ const PostCard = ({ post, theme }) => {
      
             {isPostDetailPage && <DescriptionPost post={post} />}
 
-
+            {isPostDetailPage && <DescriptionUserPost post={post} />}
             {isAuthenticated && isPostDetailPage && (
                 <>
 

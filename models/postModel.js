@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 
 const postSchema = new mongoose.Schema({
-
- title: {
+  subCategory: {
+    type: String,
+    required: true
+  },
+  title: {
     type: String,
     required: true
   },
@@ -11,6 +14,7 @@ const postSchema = new mongoose.Schema({
     type: String,
 
   },
+  /*
   modelo: {
     type: String,
 
@@ -35,7 +39,7 @@ const postSchema = new mongoose.Schema({
   moteur: {
     type: String,
   },
-   
+
   kilometrage: {
     type: String,
   },
@@ -54,6 +58,7 @@ const postSchema = new mongoose.Schema({
   couleur: {
     type: String,
   },
+  */
   description: {
     type: String,
   },
@@ -74,7 +79,7 @@ const postSchema = new mongoose.Schema({
     type: String,
 
   },
-  
+
 
 
   wilaya: {

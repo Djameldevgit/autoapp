@@ -11,10 +11,11 @@ const CardBodyTitle = ({ post }) => {
                 {!isDetailPage && (
                     <div>
                         <div className="title-post">
+                            <div className="title0">{post.subCategory}</div>
                             <div className="title0">{post.marca}</div>
                             <div className="title2">{post.modelo}</div>
 
-                            <div className="title3"> {post.attributes.papiers}</div>
+                            <div className="title3"> {post.attributes.anne}</div>
 
 
                         </div>

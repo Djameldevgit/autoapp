@@ -1,15 +1,16 @@
- 
+
 import Description from './Description';
 
 const DescriptionPost = ({ post, readMore, setReadMore }) => {
-   
+
     return (
         <div className="description-container">
             <div className="post-info">
                 <div className="info-item">
                     <i className="fas fa-car"></i>
-                    <span className="info-value">{post.title}</span>
-                    <span className="info-value">{post.marca}</span>
+                    <span className="info-label mr-2">{post.subCategory}</span>
+                    <span className="info-label mr-2">{post.title}</span>
+                    <span className="info-value mr-2">{post.marca}</span>
                     <span className="info-value">{post.modelo}</span>
                 </div>
 
@@ -75,7 +76,13 @@ const DescriptionPost = ({ post, readMore, setReadMore }) => {
                         <span className="info-value">{post.attributes.couleur}</span>
                     </div>
                 )}
-
+                {post.attributes.papiers && (
+                    <div className="info-item">
+                        <i className="fas fa-palette"></i>
+                        <span className="info-label">Papiers:</span>
+                        <span className="info-value">{post.attributes.papiers}</span>
+                    </div>
+                )}
                 {post.attributes.optionduvoiture && post.attributes.optionduvoiture.length > 0 && (
                     <div className="info-item">
                         <i className="fas fa-list-ul"></i>
@@ -83,8 +90,13 @@ const DescriptionPost = ({ post, readMore, setReadMore }) => {
                         <span className="info-value">{post.attributes.optionduvoiture.join(", ")}</span>
                     </div>
                 )}
-                
+
                 <Description post={post} readMore={readMore} setReadMore={setReadMore} />
+
+
+
+
+                
             </div>
         </div>
     );

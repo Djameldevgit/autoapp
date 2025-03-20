@@ -154,27 +154,19 @@ export const updatePost = ({postData, images, auth, status}) => async (dispatch)
         })
     }
 }*/
-export const updatePost = ({ postData, images, auth, status }) => async (dispatch) => {
+export const updatePost = ({ postData, images,  auth, status }) => async (dispatch) => {
     let media = []
     const imgNewUrl = images.filter(img => !img.url)
     const imgOldUrl = images.filter(img => img.url)
-    const attributesChanged = Object.keys(postData.attributes).some(key =>
+    const attributesChanged = Object.keys(postData.attributes).some(key => 
         JSON.stringify(postData.attributes[key]) !== JSON.stringify(status.attributes?.[key])
     );
     if (status.title === postData.title
-        && !attributesChanged
+      
+        && status.subCategory === postData.subCategory
+           && !attributesChanged 
         && JSON.stringify(status.attributes) === JSON.stringify(postData.attributes) // ⬅️ Comparar attributes
-
-
-
-        && status.Vente === postData.Vente
-        && status.Location === postData.Location
-        && status.Location_Vacances === postData.Location_Vacances
-        && status.Echange === postData.Echange
-        && status.Cherche_Location === postData.Cherche_Location
-        && status.Cherche_Achat === postData.Cherche_Achatt
-
-       
+         
         && status.description === postData.description
         && status.price === postData.price
         && status.unidaddeprecio === postData.unidaddeprecio
@@ -182,6 +174,8 @@ export const updatePost = ({ postData, images, auth, status }) => async (dispatc
         && status.change === postData.change
         && console.log("status.wilaya:", status.wilaya, "postData.wilaya:", postData.wilaya)
         && console.log("status.commune:", status.commune, "postData.commune:", postData.commune)
+        && console.log("status.marca:", status.marca, "postData.marca:", postData.marca)
+        && console.log("status.modelo:", status.modelo, "postData.modelo:", postData.modelo)
 
 
         && status.quartier === postData.quartier

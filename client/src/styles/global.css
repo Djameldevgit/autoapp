@@ -105,7 +105,7 @@ img {
 @import url("./usersadministration/reportuser.css");
 @import url("./usersadministration/infoaplicacion.css");
 @import url("./usersadministration/navbarlinks.css");
- 
+@import url("./usersadministration/postpendietes.css");
 /* --------- Responsive ------ */
 @media (max-width: 766px){
   .header .navbar .logo{

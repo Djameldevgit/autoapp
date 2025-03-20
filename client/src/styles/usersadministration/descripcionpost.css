@@ -66,13 +66,13 @@
 /* Textos */
 .info-label {
     font-weight: 600;
-    color: #333;
+    color: rgb(22, 22, 22);
     margin-right: 8px; /* Espacio entre la etiqueta y el valor */
 }
 
 .info-value {
     font-weight: 400;
-    color: #666;
+    color: rgb(26, 26, 26);
 }
 
 /* Responsivo */
@@ -93,20 +93,20 @@
 }
 
 .infoitem-description i {
-    color: #555;
+    color: rgb(5, 5, 5);
     font-size: 18px;
     margin-right: 12px; /* Espacio entre el ícono y la etiqueta */
 }
 
 .infolabel {
     font-weight: bold;
-    color: #333;
+    color: rgb(14, 13, 13);
     margin-right: 8px; /* Espacio entre la etiqueta y el valor */
 }
 
 .infovalue {
     font-size: 16px;
-    color: #666;
+    color: rgb(19, 19, 19);
     word-break: break-word;
 }
 
@@ -114,7 +114,7 @@
     display: inline-block;
     font-size: 16px;
     line-height: 1.5;
-    color: #444;
+    color: rgb(15, 15, 15);
 }
 
 .readMore {
@@ -141,17 +141,17 @@
     }
 }
 
-@media (max-width: 250px) {
+@media (max-width: 300px) {
     .description-container {
-        padding: 0.3rem;
+        padding: 0.5rem;
     }
     .info-item {
         gap: 0.3rem;
-        padding: 0.3rem;
+        padding: 0.4rem;
     }
     .info-item i,
     .info-label,
     .info-value {
-        font-size: 0.875rem; /* Reducir tamaño de fuente en pantallas pequeñas */
+        font-size:1rem; /* Reducir tamaño de fuente en pantallas pequeñas */
     }
 }
