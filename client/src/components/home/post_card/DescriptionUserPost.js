@@ -17,21 +17,8 @@ const DescriptionUserPost = ({ post }) => {
                     <span className="info-label">Wilaya:</span>
                     <span className="info-value">{post.wilaya || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
-                    <i className="fas fa-thumbs-up"></i>
-                    <span className="info-label">Commune:</span>
-                    <span className="info-value">{post.commune || t("notSpecified", { lng: language })}</span>
-                </div>
-                <div className="info-item">
-                    <i className="fas fa-comment"></i>
-                    <span className="info-label">{t("comments", { lng: language })}:</span>
-                    <span className="info-value">{post.comments.length || t("notSpecified", { lng: language })}</span>
-                </div>
-                <div className="info-item">
-                    <i className="fas fa-thumbs-up"></i>
-                    <span className="info-label">{t("likes", { lng: language })}:</span>
-                    <span className="info-value">{post.likes.length || t("notSpecified", { lng: language })}</span>
-                </div>
+               
+               
                 <div className="info-item">
                     <i className="fas fa-map"></i>
                     <span className="info-label">{t("location", { lng: language })}:</span>
@@ -42,16 +29,8 @@ const DescriptionUserPost = ({ post }) => {
                     <span className="info-label">{t("email", { lng: language })}:</span>
                     <span className="info-value">{post.email || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
-                    <i className="fas fa-user-circle"></i>
-                    <span className="info-label">{t("seller", { lng: language })}:</span>
-                    <span className="info-value">{post.informacion || t("notSpecified", { lng: language })}</span>
-                </div>
-                <div className="info-item">
-                    <i className="fas fa-comments"></i>
-                    <span className="info-label">{t("allowComments", { lng: language })}:</span>
-                    <span className="info-value">{post.comentarios || t("notSpecified", { lng: language })}</span>
-                </div>
+                
+                
                 <div className="info-item">
                     <i className="fas fa-eye"></i>
                     <span className="info-label">{t("views", { lng: language })}:</span>

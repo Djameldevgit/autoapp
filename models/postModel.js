@@ -91,10 +91,7 @@ const postSchema = new mongoose.Schema({
 
   },
 
-  quartier: {
-    type: String,
-
-  },
+   
   email: {
     type: String,
 

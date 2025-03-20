@@ -22,14 +22,14 @@ const postCtrl = {
         try {
             const { postData, images } = req.body
             const { subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
-                quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes, } = postData || {};
+                 email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes, } = postData || {};
 
             if (images.length === 0)
                 return res.status(400).json({ msg: "Please add your photo." })
 
             const newPost = new Posts({
                 subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
-                quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
+                 email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
                 attributes,
                 images,
                 user: req.user._id,
@@ -113,14 +113,14 @@ const postCtrl = {
     updatePost: async (req, res) => {
         try {
             const { subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
-                quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
+                 email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
                 images
 
             } = req.body
 
             const post = await Posts.findOneAndUpdate({ _id: req.params.id }, {
                 subCategory,title, marca, modelo, marque, model, anne, finition, moteur, papiers, kilometrage, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
-                quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
+                 email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes,
                 images
 
 
@@ -138,7 +138,7 @@ const postCtrl = {
                 newPost: {
                     ...post._doc,
                     subCategory,title, marca, modelo, marque, model, anne, finition, moteur, energie, boite, couleur, description, price, unidaddeprecio, oferta, change, wilaya, commune,
-                    quartier, email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes, images
+                     email, telefono, contadordevisitas, informacioncontacto, activarcomentarios, duraciondelanuncio, attributes, images
                 }
             })
         } catch (err) {
