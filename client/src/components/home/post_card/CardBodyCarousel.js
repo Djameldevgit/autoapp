@@ -1,155 +1,184 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import LikeButton from '../../LikeButton';
-import { useSelector, useDispatch } from 'react-redux';
-import { likePost, unLikePost, savePost, unSavePost } from '../../../redux/actions/postAction';
 import Carousel from '../../Carousel';
-import AuthModalAddLikesCommentsSave from '../../AuthModalAddLikesCommentsSave'; 
-import CardFooterPost from './CardFooterPost';
-import ShareModal from '../../ShareModal';
-import { BASE_URL } from '../../../utils/config'
+import { likePost, unLikePost, savePost, unSavePost } from '../../../redux/actions/postAction';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const CardBodyCarousel = ({ post }) => {
-    const history = useHistory();
     const [isLike, setIsLike] = useState(false);
     const [loadLike, setLoadLike] = useState(false);
-    const { auth, socket } = useSelector(state => state);
-    const dispatch = useDispatch();
     const [saved, setSaved] = useState(false);
     const [saveLoad, setSaveLoad] = useState(false);
-    const [showAuthModal, setShowAuthModal] = useState(false);
-    const [isShare, setIsShare] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    
+    const { languageReducer } = useSelector((state) => state);
+    const { t } = useTranslation();
+    const history = useHistory();
+    const { auth, socket } = useSelector(state => state);
+    const dispatch = useDispatch();
 
-    // Likes
     useEffect(() => {
-        if (post.likes.find(like => like._id === auth.user?._id)) {
+        if (auth.user && post.likes.find(like => like._id === auth.user._id)) {
             setIsLike(true);
         } else {
             setIsLike(false);
         }
-    }, [post.likes, auth.user?._id]);
+    }, [post.likes, auth.user]);
 
-    const handleCommentClick = () => {
-        if (!auth.token) {
-            setShowAuthModal(true);
-        } else {
-            history.push(`/post/${post._id}`);
-        }
-    };
-
-    const handleLike = async (e) => {
-        e.stopPropagation();
-        if (!auth.user) {
-            setShowAuthModal(true);
-            return;
-        }
+    const handleLike = async () => {
+        if (!auth.token) return setShowModal(true);
         if (loadLike) return;
+
         setLoadLike(true);
-        await dispatch(likePost({ post, auth, socket }));
+        dispatch(likePost({ post, auth, socket, t, languageReducer }));
         setLoadLike(false);
     };
 
-    const handleUnLike = async (e) => {
-        e.stopPropagation();
-        if (!auth.user) {
-            setShowAuthModal(true);
-            return;
-        }
+    const handleUnLike = async () => {
+        if (!auth.token) return setShowModal(true);
         if (loadLike) return;
+
         setLoadLike(true);
-        await dispatch(unLikePost({ post, auth, socket }));
+        dispatch(unLikePost({ post, auth, socket, t, languageReducer }));
         setLoadLike(false);
     };
 
-    // Saved
     useEffect(() => {
-        if (auth.user?.saved.find(id => id === post._id)) {
+        if (auth.user && auth.user.saved.find(id => id === post._id)) {
             setSaved(true);
         } else {
             setSaved(false);
         }
-    }, [auth.user?.saved, post._id]);
+    }, [auth.user, post._id]);
 
-    const handleSavePost = async (e) => {
-        e.stopPropagation();
-        if (!auth.user) {
-            setShowAuthModal(true);
-            return;
-        }
+    const handleSavePost = async () => {
+        if (!auth.token) return setShowModal(true);
         if (saveLoad) return;
+
         setSaveLoad(true);
         await dispatch(savePost({ post, auth }));
         setSaveLoad(false);
     };
 
-    const handleUnSavePost = async (e) => {
-        e.stopPropagation();
-        if (!auth.user) {
-            setShowAuthModal(true);
-            return;
-        }
+    const handleUnSavePost = async () => {
+        if (!auth.token) return setShowModal(true);
         if (saveLoad) return;
+
         setSaveLoad(true);
         await dispatch(unSavePost({ post, auth }));
         setSaveLoad(false);
     };
 
-    const redirectToLogin = () => {
-        history.push('/login');
-        setShowAuthModal(false);
-    };
-
-    const redirectToRegister = () => {
-        history.push('/register');
-        setShowAuthModal(false);
-    };
-
-    const closeModal = () => setShowAuthModal(false);
-
     return (
-        <>
-            <div className="card">
+        <div>
+            <div className="card_body">
+                {post.images.length > 0 && (
+                    <div className="carousel-container" style={{ position: 'relative' }}>
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: '10px',
+                                right: '10px',
+                                zIndex: 1,
+                                cursor: 'pointer',
+                                backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                                borderRadius: '50%',
+                                padding: '5px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                            onClick={saved ? handleUnSavePost : handleSavePost}
+                        >
+                            <span
+                                className="material-icons"
+                                style={{
+                                    fontSize: '24px',
+                                    color: saved ? '#ff8c00' : '#000',
+                                }}
+                            >
+                                bookmark
+                            </span>
+                        </div>
+
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: '10px',
+                                left: '10px',
+                                zIndex: 1,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <span
+                                style={{
+                                    fontSize: '14px',
+                                    fontWeight: 'bold',
+                                    color: 'red',
+                                    marginRight: '5px',
+                                }}
+                            >
+                                {post.likes.length}
+                            </span>
+
+                            <div
+                                style={{
+                                    cursor: 'pointer',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                                    borderRadius: '50%',
+                                    padding: '5px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                                onClick={isLike ? handleUnLike : handleLike}
+                            >
+                                <span
+                                    className="material-icons"
+                                    style={{
+                                        fontSize: '24px',
+                                        color: isLike ? 'red' : '#000',
+                                    }}
+                                >
+                                    favorite
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="card">
                 <div className="card__image" onClick={() => history.push(`/post/${post._id}`)}>
                     <Carousel images={post.images} id={post._id} />
                 </div>
-
-                <div className="card__actions">
-                    <div className="card__actions-left">
-                        <LikeButton
-                            isLike={isLike}
-                            handleLike={handleLike}
-                            handleUnLike={handleUnLike}
-                        />
-                        <span className="card__action-count">{post.likes.length}</span>
-
-                        <i className="far fa-comment card__action-icon" onClick={handleCommentClick} />
-                        <span className="card__action-count">{post.comments.length}</span>
-
-                        <i className="fas fa-share card__action-icon" onClick={() => setIsShare(!isShare)} />
+                        </div>
                     </div>
-
-                    <div className="card__actions-right">
-                        {saved
-                            ? <i className="fas fa-bookmark card__action-icon" onClick={handleUnSavePost} />
-                            : <i className="far fa-bookmark card__action-icon" onClick={handleSavePost} />
-                        }
-                        <span className="card__action-count">{post.saves || 0}</span>
-                    </div>
-                </div>
-
-                {isShare && <ShareModal url={`${BASE_URL}/post/${post._id}`}  />}
-
-                <CardFooterPost post={post} />
+                )}
             </div>
 
-            <AuthModalAddLikesCommentsSave
-                showModal={showAuthModal}
-                closeModal={closeModal}
-                redirectToLogin={redirectToLogin}
-                redirectToRegister={redirectToRegister}
-            />
-        </>
+            {showModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h4>{t("title", { lng: languageReducer.language })}</h4>
+                        <p>{t("message", { lng: languageReducer.language })}</p>
+                        <div className="modal-buttons">
+                            <button onClick={() => history.push("/login")}> 
+                                {t("login", { lng: languageReducer.language })}
+                            </button>
+                            <button onClick={() => history.push("/register")}>
+                                {t("register", { lng: languageReducer.language })}
+                            </button>
+                            <button onClick={() => setShowModal(false)}>
+                                {t("close", { lng: languageReducer.language })}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 };
 
 export default CardBodyCarousel;
+

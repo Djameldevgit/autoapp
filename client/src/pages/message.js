@@ -5,7 +5,7 @@
         
         const Conversation = () => {
             return (
-                <div className="message d-flex">
+                <div className="message d-flex mb-4">
                     <div className="col-md-4 border-right px-0 left_mess">
                         <LeftSide />
                     </div>

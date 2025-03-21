@@ -12,6 +12,7 @@ import DescriptionPost from './home/post_card/DescriptionPost'
 import InformationUserPost from './home/post_card/InformationUserPost'
 import { useSelector } from 'react-redux';
 import DescriptionUserPost from './home/post_card/DescriptionUserPost'
+import CommentDate from './home/post_card/CommentDate'
 
 const PostCard = ({ post, theme }) => {
     const location = useLocation();
@@ -29,7 +30,7 @@ const PostCard = ({ post, theme }) => {
             <CardBodyTitle post={post} />
             <CardBodyCarousel post={post} theme={theme} />
 
-
+<CommentDate post={post} theme={theme}/>
 
 
 

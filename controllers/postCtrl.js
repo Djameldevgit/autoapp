@@ -85,29 +85,72 @@ const postCtrl = {
         }
     },
 
-    getPosts: async (req, res) => {
+    getPosts : async (req, res) => {
         try {
-            const features = new APIfeatures(Posts.find({ estado: "aprobado" }), req.query).paginating()
-
-
+            // Extraer los parámetros de filtro desde req.query
+            const { subCategory, title, wilaya, commune, startDate, endDate, minPrice, maxPrice } = req.query;
+    
+            // Definir la consulta básica para los posts aprobados
+            const query = { estado: "aprobado" };
+    
+            // Aplicar filtros si están presentes en la solicitud
+            if (subCategory) {
+                query.subCategory = subCategory;
+            }
+            if (title) {
+                query.title = { $regex: title, $options: 'i' }; // Búsqueda insensible a mayúsculas/minúsculas
+            }
+            if (wilaya) {
+                query.wilaya = wilaya;
+            }
+            if (commune) {
+                query.commune = commune;
+            }
+            if (startDate || endDate) {
+                query.createdAt = {}; // Campo de fecha en tu modelo
+                if (startDate) {
+                    query.createdAt.$gte = new Date(startDate); // Fecha de inicio
+                }
+                if (endDate) {
+                    query.createdAt.$lte = new Date(endDate); // Fecha de fin
+                }
+            }
+            if (minPrice || maxPrice) {
+                query.price = {}; // Campo de precio en tu modelo
+                if (minPrice) {
+                    query.price.$gte = Number(minPrice); // Precio mínimo
+                }
+                if (maxPrice) {
+                    query.price.$lte = Number(maxPrice); // Precio máximo
+                }
+            }
+    
+            // Obtener los posts filtrados y paginados
+            const features = new APIfeatures(Posts.find(query), req.query).paginating();
+    
             const posts = await features.query.sort('-createdAt')
-                .populate("user likes", "avatar username   followers")
+                .populate("user likes", "avatar username fullname followers") // Populate user y likes
                 .populate({
                     path: "comments",
                     populate: {
                         path: "user likes",
-                        select: "-password"
+                        select: "-password" // Excluir la contraseña del usuario
                     }
-                })
-
+                });
+    
+            // Obtener el total de posts que coinciden con la consulta (sin paginación)
+            const totalPosts = await Posts.countDocuments(query);
+    
+            // Responder con los posts encontrados y la información de paginación
             res.json({
                 msg: 'Success!',
                 result: posts.length,
                 posts
-            })
-
+            });
+    
         } catch (err) {
-            return res.status(500).json({ msg: err.message })
+            // Manejar errores
+            return res.status(500).json({ msg: err.message });
         }
     },
     updatePost: async (req, res) => {

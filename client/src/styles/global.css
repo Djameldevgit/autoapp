@@ -97,7 +97,7 @@ img {
 @import url("./usersadministration/usericon.css");
 @import url("./usersadministration/AuthModalAddLikesCommnetSave.css");
 @import url("./usersadministration/informationuserpost.css");
-@import url("./usersadministration/cardfootercommenttiempomodal.css");
+ 
 @import url("./usersadministration/homemodalsearch.css");
 @import url("./usersadministration/paginabooqueo.css");
 @import url("./usersadministration/cardheadermodalreportpost.css");
@@ -108,6 +108,8 @@ img {
 @import url("./usersadministration/postpendietes.css");
 
 @import url("./usersadministration/searchhome.css");
+@import url("./usersadministration/cardtitlefooterpost.css");
+@import url("./toast.css");
 /* --------- Responsive ------ */
 @media (max-width: 766px){
   .header .navbar .logo{
@@ -156,9 +158,10 @@ img {
 
   
 .header .imagelogo {
-  width: 70px;
-  height: 50px;
-  
+  width: 85px;
+  height: 55px;
+  margin-bottom: 5px;
+  padding: 0px;
 }
  
 body.rtl {

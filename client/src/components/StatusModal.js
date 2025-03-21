@@ -369,7 +369,7 @@ const StatusModal = () => {
     const subcategoryy = () => (
         <div className="form-group">
             <select name="subCategory" value={postData.subCategory} onChange={handleChangeInput} className="form-control" required>
-             
+            <option value="">Sélectionner une catégorie</option>
                 <option value="Vente">Vente</option>
                 <option value="Location">Location</option>
 

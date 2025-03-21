@@ -1,32 +1,67 @@
-
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
 import { GLOBALTYPES } from '../../redux/actions/globalTypes';
 import Avatar from '../Avatar';
 import NotifyModal from '../NotifyModal';
+import LanguageSelector from '../LanguageSelector';
+import Modalsearchhome from '../Modalsearchhome';
+import AuthModalAddLikesCommentsSave from '../AuthModalAddLikesCommentsSave';
 
 const Menu = () => {
     const dispatch = useDispatch();
     const { auth, theme, notify } = useSelector(state => state); // Obtén el estado de autenticación, tema y notificaciones
-
+    const history = useHistory(); // Para redireccionar al usuario
     const { pathname } = useLocation(); // Para verificar la ruta actual
 
+    const [filters, setFilters] = useState({ title: '' });
+    const [isModalOpen, setIsModalOpen] = useState(false); // Para el modal de búsqueda
+    const [showAuthModal, setShowAuthModal] = useState(false); // Para el modal de autenticación
 
+    // Definir las funciones antes de usarlas
+    const openSearchModal = () => {
+        setIsModalOpen(true);
+    };
 
+    const handleDiscoverClick = () => {
+        if (auth.user) {
+            // Si el usuario está autenticado, ejecuta el dispatch
+            dispatch({ type: GLOBALTYPES.STATUS, payload: true });
+        } else {
+            // Si no está autenticado, muestra el modal
+            setShowAuthModal(true);
+        }
+    };
 
     const navLinks = [
         { label: 'Home', icon: 'home', path: '/' }, // Sin función onClick
-        { label: 'Search', icon: 'search', path: '#' }, // Función para abrir el modal de búsqueda
-        { label: 'Discover', icon: 'fas fa-plus', path: 'message' } // Función para ejecutar el dispatch
+        { label: 'Search', icon: 'search', path: '#', onClick: openSearchModal }, // Función para abrir el modal de búsqueda
+        { label: 'Discover', icon: 'fas fa-plus', onClick: handleDiscoverClick } // Función para ejecutar el dispatch
     ];
 
     const isActive = (pn) => {
         if (pn === pathname) return 'active';
     };
 
+    const handleFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilters({ ...filters, [name]: value });
+    };
 
+    const redirectToLogin = () => {
+        history.push('/login'); // Redirige al usuario a la página de inicio de sesión
+        setShowAuthModal(false); // Cierra el modal
+    };
 
+    const redirectToRegister = () => {
+        history.push('/register'); // Redirige al usuario a la página de registro
+        setShowAuthModal(false); // Cierra el modal
+    };
+
+    const closeSearchModal = () => {
+        setIsModalOpen(false);
+    };
 
     return (
         <div className="menu">
@@ -53,9 +88,31 @@ const Menu = () => {
                     </li>
                 ))}
 
+                {/* Modal para usuarios no autenticados */}
+                <AuthModalAddLikesCommentsSave
+                    showModal={showAuthModal}
+                    closeModal={() => setShowAuthModal(false)}
+                    redirectToLogin={redirectToLogin}
+                    redirectToRegister={redirectToRegister}
+                />
 
-
-
+                {/* Modal de búsqueda */}
+                <Modalsearchhome isOpen={isModalOpen} onClose={closeSearchModal}>
+                    <div>
+                        <h3>Search by title and province</h3>
+                        <div className="filter-group">
+                            <small>Titre</small>
+                            <input
+                                type="text"
+                                name="title"
+                                placeholder="Titre"
+                                onChange={handleFilterChange}
+                                value={filters.title}
+                            />
+                        </div>
+                        <button onClick={closeSearchModal}>Cerrar</button>
+                    </div>
+                </Modalsearchhome>
 
                 {/* Icono de notificaciones */}
                 <li className="nav-item dropdown" style={{ opacity: 1 }}>
@@ -81,14 +138,16 @@ const Menu = () => {
                             <Avatar src={auth.user.avatar} size="medium-avatar" />
                         </span>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                            <Link className="dropdown-item" onClick={() => dispatch({ type: GLOBALTYPES.STATUS, payload: true })}>
+                            <div className='language'>
+                                <LanguageSelector />
+                            </div>
+                            <div className="dropdown-item" onClick={() => dispatch({ type: GLOBALTYPES.STATUS, payload: true })}>
                                 Ajouter un annnoces
-                            </Link>
+                            </div>
                             <Link className="dropdown-item" to='/informacionaplicacion'>Info aplicacion</Link>
                             <Link className="dropdown-item" to='/messages'>Chat </Link>
                             <Link className="dropdown-item" to='/administration/roles'>Roles</Link>
-
+                           
                             {auth.user.role === "admin" && (
                                 <>
 

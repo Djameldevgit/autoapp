@@ -126,7 +126,7 @@ const LeftSide = () => {
                     </>
                 }
                
-               <button ref={pageEnd} style={{opacity: 0}} >Load More</button>
+               <button ref={pageEnd} style={{opacity: 0}} >Lire plus</button>
             </div>
         </>
     )
