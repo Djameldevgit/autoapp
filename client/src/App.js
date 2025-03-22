@@ -44,7 +44,7 @@ import UsersAction from './components/adminitration/UsersAction';
 import Informacionaplicacion from './pages/informacionaplicacion';
 import Profile from './pages/profile';
 import Login from './pages/login';
- 
+import Peer from 'peerjs'
 
 
 function App() {
@@ -65,7 +65,13 @@ function App() {
     }
   }, [language]); // Ahora depende de `language`, que siempre tiene un valor
 
-
+  useEffect(() => {
+    const newPeer = new Peer(undefined, {
+      path: '/', secure: true
+    })
+    
+    dispatch({ type: GLOBALTYPES.PEER, payload: newPeer })
+  },[dispatch])
 
   useEffect(() => {
     if (auth.token && !isLoggedIn) {
