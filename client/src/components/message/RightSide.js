@@ -184,8 +184,8 @@ const RightSide = () => {
             <div className="message_header" style={{ cursor: "pointer" }}>
                 {user.length !== 0 && (
                     <UserCard user={user}>
-                        <div>
-                            {auth.role === "superuser" && (
+                        <div> 
+                            {auth.user.role === "superuser" && (
                                 <>
                                     <i className="fas fa-phone-alt" onClick={handleAudioCall} />
                                     <i className="fas fa-video mx-3" onClick={handleVideoCall} />
