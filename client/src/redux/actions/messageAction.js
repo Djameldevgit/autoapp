@@ -32,7 +32,7 @@ export const addMessage = ({ msg, auth, socket }) => async (dispatch) => {
             id: auth.user._id, // ID del usuario que envía el mensaje
             text: 'vous a envoyé un message.', // Texto de la notificación
             recipients: [msg.recipient], // ID del usuario que recibe el mensaje
-            url: `/message/${msg.recipient._id}`, // URL para redirigir al hacer clic
+            url: `/message/${msg.recipient}`, // URL para redirigir al hacer clic
             content: msg.text, // Contenido del mensaje (opcional)
             image: auth.user.avatar, // Imagen del usuario que envía el mensaje (opcional)
         };
