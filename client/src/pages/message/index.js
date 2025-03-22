@@ -1,9 +1,9 @@
 import React from 'react'
 import LeftSide from '../../components/message/LeftSide'
 
-const Messages = () => {
+const Message = () => {
     return (
-        <div className="message d-flex mb-4">
+        <div className="message d-flex">
             <div className="col-md-4 border-right px-0">
                 <LeftSide />
             </div>
@@ -12,9 +12,9 @@ const Messages = () => {
                 <div className="d-flex justify-content-center 
                 align-items-center flex-column h-100">
 
-                    <i className="fas fa-car text-primary"
+                    <i className="fab fa-facebook-messenger text-primary"
                     style={{fontSize: '5rem'}} />
-                    <h4>Chat Vehicules</h4>
+                    <h4>Messenger</h4>
 
                 </div>
             </div>
@@ -22,4 +22,4 @@ const Messages = () => {
     )
 }
 
-export default Messages
+export default Message

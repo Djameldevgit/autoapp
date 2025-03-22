@@ -172,23 +172,16 @@ const userCtrl = {
     }
 },
 
-
-    searchUser: async (req, res) => {
-        try {
-            const query = req.query.username;
-
-            // Utiliza una expresión regular insensible a mayúsculas y minúsculas
-            const regex = new RegExp(query, 'i');
-
-            const users = await Users.find({ username: { $regex: regex } })
-                .limit(10)
-                .select("username avatar");
-
-            res.json({ users });
-        } catch (err) {
-            return res.status(500).json({ msg: err.message });
-        }
-    },
+searchUser: async (req, res) => {
+    try {
+        const users = await Users.find({username: {$regex: req.query.username}})
+        .limit(10).select("username avatar")
+        
+        res.json({users})
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
+    }
+},
 /*
     getUser: async (req, res) => {
         // Manejo de headers con valores por defecto

@@ -7,7 +7,6 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Tajawal', sans-serif;
  
 
 }
@@ -136,7 +135,7 @@ img {
   }
   
   .message{
-    height: calc(100vh - 100px);
+    height: calc(auto - 100px);
   }
   .right_mess,
   .left_mess{
