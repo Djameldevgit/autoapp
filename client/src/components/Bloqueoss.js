@@ -20,7 +20,7 @@ const Bloqueoss = () => {
         <div className="bloqueo-container">
             {isBlocked ? (
                 <div className="bloqueo-card">
-                    <h2>Système de blocage Immobilier reghaia</h2>
+                    <h2>Système de blocage automobile reghaia</h2>
                     <div className="bloqueo-info">
                         <div className="bloqueo-item">
                             <span className="label">Nom d'utilisateur: </span>

@@ -130,7 +130,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
         "email": "E-mail",
         "show": "Afficher",
         "hide": "Masquer",
-        "realestate": "IMMOBILIER",
+        "AUTO": "AUTOMOBILE",
         "already_have_account": "Vous avez déjà un compte?",
         "login_now": "Connectez-vous maintenant",
         "email_help": "Nous ne partagerons jamais votre e-mail avec qui que ce soit.",

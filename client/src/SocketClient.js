@@ -104,7 +104,7 @@ const SocketClient = () => {
                 msg.user.username + ' ' + msg.text,
                 msg.user.avatar,
                 msg.url,
-                'Immobilier-djamel'
+                'automobile-djamel'
             )
         })
 
